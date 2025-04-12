@@ -10,7 +10,7 @@ import LanguesLogo from '../../assets/langues.png'
 import flagMap from './flagLoader';
 import { open } from '@tauri-apps/plugin-dialog';
 import { invoke } from '@tauri-apps/api/core';
-import { Command } from '@tauri-apps/plugin-shell';
+// import { Command } from '@tauri-apps/plugin-shell';
 
 // Import icons
 import {
