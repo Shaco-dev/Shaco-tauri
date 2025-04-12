@@ -10,20 +10,20 @@ This is just the beginning! The goal is to turn Shaco Tool into a true all-in-on
 - Editing and managing image assets
 - Working with SWF files
 
-This tool is built using:
+## 🛠️ Download
 
-- **Vue 3**
-- **TypeScript**
-- **[Tauri](https://tauri.app/)** – for building a lightweight desktop application
+You can download the latest release of Shaco Tool from the following link:  
+[Download Shaco Tool](https://github.com/Shaco-dev/Shaco-tauri/releases/latest)
 
 ## 🚧 Note on Code Quality
 
 The code is currently focused on **functionality first**. It's not fully cleaned up or organized yet, but improvements and refactoring are coming soon!
 
-## 🛠️ Download
+This tool is built using:
 
-You can download the latest release of Shaco Tool from the following link:  
-[Download Shaco Tool](https://github.com/Shaco-dev/Shaco-tauri/releases/latest)
+- **Vue 3**
+- **TypeScript**
+- **[Tauri](https://tauri.app/)** – for building a lightweight desktop application
 
 ## 🤝 Contributions
 
