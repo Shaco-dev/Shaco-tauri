@@ -180,9 +180,6 @@ function toggleLanguage(langCode: string) {
     }
 }
 
-function isLanguageSelected(langCode: string) {
-    return selectedLanguages.value.includes(langCode)
-}
 
 async function handleImportFiles(extension: 'gz' | 'txt' | 'json' = 'gz') {
     const filterNames = {
