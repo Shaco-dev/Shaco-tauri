@@ -11,7 +11,10 @@ const versionFeatures = [
   },
   {
     description: 'Implemented an auto-update feature to keep the app up-to-date.'
-  }
+  },
+  {
+    description: 'Fixed an issue where languages did not load correctly after download.'
+  },
 ]
 </script>
 
@@ -41,7 +44,7 @@ const versionFeatures = [
           <h2 class="text-2xl font-semibold mb-6 text-[#0f0f0f] dark:text-[#f6f6f6]">
             <span style="color: #b54925;">Release Notes</span>
             <span style="color: #e48a1f;"> & Features</span>
-            <span class="text-[#0f0f0f] dark:text-[#f6f6f6]"> (v0.2.0)</span>
+            <span class="text-[#0f0f0f] dark:text-[#f6f6f6]"> (v0.2.1)</span>
           </h2>
           <div class="space-y-3">
             <ul class="list-disc pl-5 text-[15px] text-[#e0e0e0] dark:text-[#dcdcdc] leading-relaxed">
