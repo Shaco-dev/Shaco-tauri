@@ -504,7 +504,8 @@ async function handleDownload() {
             const lang = languages.find(l => l.code === langCode)
             if (lang) {
                 lang.loaded = true
-                translations[langCode] = await loadGzFile(`${loadPath}/tfm-${langCode}.gz`)
+                const textData = await loadGzFile(`${loadPath}/tfm-${langCode}.gz`)
+                translations[langCode] = await textToJson(textData)
             }
         }
         selectedLanguages.value = [];
