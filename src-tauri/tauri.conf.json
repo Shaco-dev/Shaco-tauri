@@ -38,7 +38,7 @@
     "updater": {
       "createUpdaterArtifacts": true,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJFRkM0MjE2REVENTU0ODAKUldTQVZOWGVGa0w4dnI2MUNOSWRtdkp6bncycndJYmZLbld2dFJjaGpGUVVScWJhOWpKU2U5OWYK",
-      "endpoints": ["https://github.com/Shaco-dev/Shaco-tool/main/releases/latest/download/latest.json"],
+      "endpoints": ["https://github.com/Shaco-dev/Shaco-tauri/releases/latest/download/latest.json"],
       "windows": {
         "installMode": "passive"
       }
