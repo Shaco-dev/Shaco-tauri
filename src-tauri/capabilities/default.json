@@ -2,18 +2,14 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": [
-    "main"
-  ],
+  "windows": ["main"],
   "permissions": [
     "core:default",
     "opener:default",
     {
       "identifier": "dialog:allow-open",
       "commands": {
-        "allow": [
-          "open"
-        ]
+        "allow": ["open"]
       }
     },
     {
@@ -41,6 +37,31 @@
       },
       "scope": {
         "allow": ["*"]
+      }
+    },
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "explorer",
+          "cmd": "explorer",
+          "args": true
+        }
+      ]
+    },
+    {
+      "identifier": "shell:allow-spawn",
+      "commands": {
+        "allow": ["spawn"]
+      },
+      "scope": {
+        "allow": ["*"]
+      }
+    },
+    {
+      "identifier": "updater:default",
+      "commands": {
+        "allow": ["checkUpdate", "installUpdate"]
       }
     }
   ]

@@ -21,30 +21,47 @@ fn decompress_gz(path: String) -> Result<String, String> {
 }
 
 #[tauri::command]
-fn compress_gz(input: String, output_path: String) -> Result<String, String> {
+fn compress_gz(content: String, path: String) -> Result<String, String> {
     use flate2::write::ZlibEncoder;
     use flate2::Compression;
     use std::fs::File;
     use std::io::Write;
 
-    let file = File::create(&output_path).map_err(|e| e.to_string())?;
-    let mut encoder = ZlibEncoder::new(file, Compression::default());
+    // Create the file to write the compressed data
+    let file = File::create(&path).map_err(|e| e.to_string())?;
 
+    let mut encoder = ZlibEncoder::new(file, Compression::default());
     encoder
-        .write_all(input.as_bytes())
+        .write_all(content.as_bytes())
         .map_err(|e| e.to_string())?;
     encoder.finish().map_err(|e| e.to_string())?;
 
-    Ok("Compression successful".into())
+    Ok("Compression successful".to_string())
+}
+
+#[tauri::command]
+async fn fetch_url(url: String) -> Result<Vec<u8>, String> {
+    match reqwest::get(&url).await {
+        Ok(resp) => match resp.bytes().await {
+            Ok(bytes) => Ok(bytes.to_vec()),
+            Err(e) => Err(format!("Failed to read bytes: {}", e)),
+        },
+        Err(e) => Err(format!("Request failed: {}", e)),
+    }
 }
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
-        .invoke_handler(tauri::generate_handler![decompress_gz, compress_gz])
+        .invoke_handler(tauri::generate_handler![
+            decompress_gz,
+            compress_gz,
+            fetch_url
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

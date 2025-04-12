@@ -2,7 +2,7 @@
     <nav class="navbar">
         <ul class="nav-links">
             <li>
-                <router-link to="/" class="logo-link">
+                <router-link to="/" class="select-none logo-link">
                     <span class="flex items-center gap-2">
                         <img :src="HomeLogo" class="logo-img" />
                         <span class="logo-text">Home</span>
@@ -10,7 +10,7 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="/Languages" class="logo-link">
+                <router-link to="/Languages" class="select-none logo-link">
                     <span class="flex items-center gap-2">
                         <img :src="LanguesLogo" class="logo-img" />
                         <span class="logo-text">Langues</span>

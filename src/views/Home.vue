@@ -1,75 +1,79 @@
 <script setup lang="ts">
 import Logo from '../assets/logo.png'
+import DiscordLogo from '../assets/discord.png'
 
-const upcomingFeatures = [
+const versionFeatures = [
   {
-    title: 'Bulk Key Management',
-    description: 'Add new translation keys to multiple languages simultaneously'
+    description: 'Added feature to download languages with a beautiful and simple interface.'
   },
   {
-    title: 'Advanced Title Editor',
-    description: 'Visual title customization with color picker and styling options'
-  },
-  {
-    title: 'Format Conversion',
-    description: 'Seamless conversion between JSON and text formats'
+    description: 'Introduced a live language editor for easy translation management.'
   }
 ]
 </script>
 
 <template>
-  <div class="bg-[#f6f6f6] dark:bg-[#2f2f2f] ">
-    <!-- Main Content -->
+  <div class="bg-[#f6f6f6] dark:bg-[#2f2f2f]">
     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-      <!-- Feature Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-2 gap-8 mb-8">
-        <div class="bg-white dark:bg-[#2f2f2f] p-8 rounded-xl w-full">
-          <h2 class="text-2xl font-semibold mb-6 text-[#0f0f0f] dark:text-[#f6f6f6] text-center">
-            <span style='color: #b54925;'>Shaco TFM - </span>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-2">
+        <!-- Tool Info Card -->
+        <div class="bg-white dark:bg-[#2f2f2f] p-8 rounded-xl w-full text-center">
+          <h2 class="text-xl font-semibold mb-4 text-[#0f0f0f] dark:text-[#f6f6f6]">
+            <span style="color: #b54925;">Shaco TFM - </span>
+            <span style="color: #e48a1f;">All-In-One Tool</span>
+          </h2>
+          <img :src="Logo" alt="Logo" class="h-40 w-40 mx-auto mb-2" />
+          <p class="flex justify-center items-center gap-2 mt-1 text-[#0f0f0f] dark:text-[#f6f6f6]">
+            <!-- <DiscordIcon class="w-5 h-5 text-[#5865F2]" /> -->
+            <img :src="DiscordLogo" alt="Discord Logo" class="w-8 h-8" />
+            <a
+              href="https://discord.gg/U3TTvaSaPS"
+              target="_blank"
+              class="decoration-none text-[#e48a1f] hover:underline"
+            >
+              Join our Discord
+            </a>
+          </p>
+        </div>
 
-            <span style='color: #e48a1f;'>All-In-One Tool</span>
-          </h2>
-          <img :src="Logo" alt="Logo" class="h-54 w-54 m-auto" />
-          <p class="m-auto text-center mt-5">
-            <span style='color: #b54925;'>Version : </span>
-            <span style='color: #e48a1f;'>0.0.1-beta</span>
-          </p>
-          <p class="m-auto text-center">
-            <span style='color: #b54925;'>Discord : </span>
-            <span style='color: #e48a1f;'>yaso_yt</span>
-          </p>
-        </div>
-        <!-- Upcoming Features -->
-        <div class="bg-white dark:bg-[#2f2f2f] p-8 rounded-xl border border-gray-200 dark:border-gray-700">
+        <!-- Release Notes Card -->
+        <div class="bg-white dark:bg-[#2f2f2f] p-8 rounded-xl border border-[#e48a1f] dark:border-[#e48b1f2f]">
           <h2 class="text-2xl font-semibold mb-6 text-[#0f0f0f] dark:text-[#f6f6f6]">
-            What's Coming
+            <span style="color: #b54925;">Release Notes</span>
+            <span style="color: #e48a1f;"> & Features</span>
+            <span class="text-[#0f0f0f] dark:text-[#f6f6f6]"> (v0.1.1)</span>
           </h2>
-          <div class="space-y-6">
-            <div v-for="roadmap in upcomingFeatures" :key="roadmap.title"
-              class="border-l-4 border-[#646cff] dark:border-[#ffbd2e] pl-4">
-              <h3 class="font-medium text-[#0f0f0f] dark:text-[#f6f6f6] mb-2">
-                {{ roadmap.title }}
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm">
-                {{ roadmap.description }}
-              </p>
-            </div>
-          </div>
+          <div class="space-y-3">
+  <ul class="list-disc pl-5 text-[15px] text-[#e0e0e0] dark:text-[#dcdcdc] leading-relaxed">
+    <li v-for="feature in versionFeatures" :key="feature.description">
+      {{ feature.description }}
+    </li>
+  </ul>
+</div>
         </div>
+      </div>
+
+      <!-- Credits -->
+      <div class="bg-white dark:bg-[#2f2f2f] p-6 rounded-xl text-center border-b border-[#e48a1f] dark:border-[#e48a1f]">
+        <h2 class="text-xl font-semibold text-[#0f0f0f] dark:text-[#f6f6f6] mb-2">
+          Credits & Contributors
+        </h2>
+        <p class="text-sm text-gray-700 dark:text-gray-300">
+          Made with <span class="text-[#e48a1f] text-md">♥</span> by <a href="https://github.com/Shaco-dev" target="_blank" class="text-[#e48a1f] hover:underline">Shaco-dev</a> —
+          idea support by <span class="text-[#b54925]">Amr Dev</span>.
+        </p>
+        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+          You're welcome to contribute! Check out the repository on
+<a href="https://github.com/Shaco-dev/Shaco-tauri" target="_blank" class="text-[#646cff] hover:underline">
+  github.com/Shaco-dev/Shaco-tauri
+</a>
+        </p>
       </div>
     </main>
   </div>
 </template>
 
-
 <style scoped>
-.flex-col.items-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .logo.vite:hover {
   filter: drop-shadow(0 0 2em #747bff);
 }

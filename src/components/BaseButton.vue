@@ -33,7 +33,7 @@ const buttonClasses = computed(() => {
 </script>
 
 <template>
-  <button :class="buttonClasses" :disabled="disabled">
+  <button class="select-none" :class="buttonClasses" :disabled="disabled">
     <component 
       :is="icon" 
       v-if="icon" 
