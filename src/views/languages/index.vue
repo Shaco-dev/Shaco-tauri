@@ -248,8 +248,6 @@ async function textToJson(text: string) {
         if (equalIndex === -1) continue;
 
         const key = block.substring(0, equalIndex);
-        if (key == "Badge_386")
-            console.log(block)
         const value = block.substring(equalIndex + 1);
 
         jsonObject[key] = value;
@@ -275,7 +273,6 @@ async function saveContentToFile(content: string, filePath: string) {
     try {
         const encoder = new TextEncoder();
         await writeFile(filePath, encoder.encode(content))
-        console.log('File saved successfully!');
     } catch (error) {
         console.error('Error saving file:', error);
     }
@@ -376,7 +373,6 @@ async function handleExport() {
                 const content = await jsonToText(translations[lang.code])
                 const fileName = `tfm-${lang.code.toLowerCase()}.${exportFormat.value}`
                 const filePath = `${exportPath.value}/${fileName}`
-                console.log(exportFormat.value)
                 if (exportFormat.value === 'gz') {
                     await saveAsGz(content, filePath)
                 } else if (exportFormat.value === 'txt') {
@@ -481,7 +477,6 @@ async function handleDownload() {
                 downloadingFilename.value = fileName;
             } catch (error) {
                 console.error(`Failed to download ${langCode}:`, error);
-                // Continue with next file even if one fails
                 continue;
             }
         }
@@ -877,7 +872,7 @@ async function handleDownload() {
                                         <span class="text-sm font-medium dark:text-gray-200">{{ format.label }}</span>
                                     </div>
                                     <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 pl-7">{{ format.description
-                                        }}
+                                    }}
                                     </p>
                                 </div>
                             </label>
