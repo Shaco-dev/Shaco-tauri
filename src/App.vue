@@ -65,7 +65,7 @@ h1 {
   text-align: center;
 }
 
-input,
+s-input,
 button {
   border-radius: 8px;
   border: 1px solid transparent;
