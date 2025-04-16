@@ -34,7 +34,7 @@ import { join } from '@tauri-apps/api/path'
 
 const currentView = ref('edit')
 const showDownloadModal = ref(false)
-const showExportModal = ref(false)
+const showExportModal = ref(true)
 const exportFormat = ref('gz')
 const selectedLanguages = ref<string[]>([])
 const searchQuery = ref('')
@@ -831,7 +831,7 @@ async function handleDownload() {
                                 class="select-none flex items-start space-x-3 p-3 bg-[#0f0f0f98] rounded-lg cursor-pointer transition-colors"
                                 :class="{
                                     'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800': exportFormat === format.value,
-                                    'hover:bg-gray-100/50 border border-transparent dark:hover:bg-gray-800': exportFormat !== format.value
+                                    'bg-gray-50 hover:bg-gray-100/50 border border-transparent dark:hover:bg-gray-800': exportFormat !== format.value
                                 }">
                                 <div class="flex-1">
                                     <div class="flex items-center gap-2">
