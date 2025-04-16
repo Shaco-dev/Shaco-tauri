@@ -516,14 +516,14 @@ async function handleDownload() {
     <div class="bg-[#f6f6f6] dark:bg-[#2f2f2f]">
         <!-- Top Navigation -->
         <nav
-            class="sticky top-0 z-50 border-b border-gray-200 dark:border-[#ffbd2e] backdrop-blur bg-white/80 dark:bg-[#2f2f2f]/80">
+            class="sticky top-0 z-50 border-b border-gray-300 dark:border-[#ffbd2e] backdrop-blur bg-white/70 dark:bg-[#2f2f2f]/80">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between text-sm">
 
-                    <span class="flex text-xl font-bold text-[#646cff] dark:text-[#ffbd2e]">
-                        <img :src="LanguesLogo" alt="Logo" class="mr-4" />
-                        <span class="mt-1">Langues</span>
-                    </span>
+                    <span class="flex items-center bg-white shadow-md rounded-xl px-3 py-1 transition-colors duration-200 border-b border-white/10 hover:bg-[#f9f9f9]">
+                        <img :src="LanguesLogo" alt="Logo" class="mr-2" />
+                        <span class="text-md font-bold text-[#ffbd2e]">Langues</span>
+                        </span>
 
                     <div class="flex items-center space-x-3">
 
@@ -630,7 +630,7 @@ async function handleDownload() {
                     class="flex-1 rounded-xl bg-white dark:bg-[#2f2f2f] p-6 shadow-sm border border-gray-200 dark:border-gray-700">
                     <div v-if="currentView === 'edit'">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="flex text-sm font-semibold text-[#0f0f0f] dark:text-[#f6f6f6]">
+                            <span class="flex text-sm font-semibold text-gray-700 dark:text-[#f6f6f6]">
                                 <img v-if="selectedLanguage" :src="flagMap[selectedLanguage?.flagCode]"
                                     class="h-5 w-5 mr-2" alt="Flag" />
                                 {{ selectedLanguage ? selectedLanguage.language :
@@ -641,7 +641,7 @@ async function handleDownload() {
 
                         <div class="border rounded-lg border-gray-200 dark:border-gray-700 overflow-hidden">
                             <div
-                                class="grid grid-cols-12 bg-gray-50 dark:bg-[#0f0f0f69] p-2 text-sm font-medium border-b border-gray-200 dark:border-gray-700">
+                                class="grid grid-cols-12 bg-gray-50 text-gray-600 dark:text-gray-300 dark:bg-[#0f0f0f69] p-2 text-sm font-medium border-b border-gray-200 dark:border-gray-700">
                                 <div class="col-span-4">Translation Key</div>
                                 <div class="col-span-8">Translation Value</div>
                             </div>
