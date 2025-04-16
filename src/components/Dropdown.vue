@@ -41,9 +41,11 @@ onBeforeUnmount(() => {
       <div
         v-show="isOpen"
         @click="close"
-        class="absolute right-0 mt-2 w-64 origin-top-right rounded-lg border border-gray-700 bg-[#1e1e1e] text-white shadow-xl z-50"
+        class="absolute right-0 mt-2 w-64 origin-top-right rounded-xl dark:border bg-white text-[#1f1f1f] dark:bg-[#1e1e1e] dark:text-white border-gray-200 border-2 dark:border-gray-700 shadow-lg z-50"
       >
+      <div class="grid gap-x-8 gap-row-4">
         <slot name="content" :toggle="toggle" />
+      </div>
       </div>
     </transition>
   </div>

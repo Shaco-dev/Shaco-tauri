@@ -4,6 +4,7 @@ import { computed, reactive, ref, watch, watchEffect } from 'vue'
 import BaseButton from '../../components/BaseButton.vue'
 import Dropdown from '../../components/Dropdown.vue'
 import Modal from '../../components/Modal.vue'
+import SearchInput from '../../components/SearchInput.vue'
 
 import LanguesLogo from '../../assets/langues.png'
 
@@ -33,7 +34,7 @@ import { join } from '@tauri-apps/api/path'
 
 const currentView = ref('edit')
 const showDownloadModal = ref(false)
-const showExportModal = ref(false)
+const showExportModal = ref(true)
 const exportFormat = ref('gz')
 const selectedLanguages = ref<string[]>([])
 const searchQuery = ref('')
@@ -515,14 +516,14 @@ async function handleDownload() {
     <div class="bg-[#f6f6f6] dark:bg-[#2f2f2f]">
         <!-- Top Navigation -->
         <nav
-            class="sticky top-0 z-50 border-b border-gray-200 dark:border-[#ffbd2e] backdrop-blur bg-white/80 dark:bg-[#2f2f2f]/80">
+            class="sticky top-0 z-50 border-b border-gray-300 dark:border-[#ffbd2e] backdrop-blur bg-white/70 dark:bg-[#2f2f2f]/80">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between text-sm">
 
-                    <span class="flex text-xl font-bold text-[#646cff] dark:text-[#ffbd2e]">
-                        <img :src="LanguesLogo" alt="Logo" class="mr-4" />
-                        <span class="mt-1">Langues</span>
-                    </span>
+                    <span class="flex items-center bg-white dark:bg-[#2f2f2f]/80 shadow-md rounded-xl px-3 py-1 transition-colors duration-200 border-b border-white/10 hover:bg-[#f9f9f9]">
+                        <img :src="LanguesLogo" alt="Logo" class="mr-2" />
+                        <span class="text-md font-bold text-[#ffbd2e]">Langues</span>
+                        </span>
 
                     <div class="flex items-center space-x-3">
 
@@ -603,19 +604,7 @@ async function handleDownload() {
                     <div
                         class="p-3 bg-white dark:bg-[#0f0f0f98] rounded-lg border border-gray-200 dark:border-gray-700">
                         <h3 class="text-sm font-medium mb-2">Loaded Languages ({{ loadedLanguages.length }})</h3>
-                        <div class="relative">
-                            <div
-                                class="relative w-full pl-3 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-[#0f0f0f] text-gray-300 placeholder-gray-400">
-                                <input type="text" placeholder="Search language" v-model="searchLoadedQuery"
-                                    class="w-full pl-10 pr-4 bg-transparent border-none focus:outline-none h-6" />
-                                <div class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">
-                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
+                        <SearchInput variant="sm" v-model="searchLoadedQuery" placeholder="Search language"/>
                         <div class="mt-2 space-y-1 max-h-64 overflow-y-auto scrollbar">
                             <div v-for="lang in filteredLoadedLanguages" :key="lang.code"
                                 class="flex items-center text-sm p-2 rounded-md cursor-pointer transition-all" :class="{
@@ -641,30 +630,18 @@ async function handleDownload() {
                     class="flex-1 rounded-xl bg-white dark:bg-[#2f2f2f] p-6 shadow-sm border border-gray-200 dark:border-gray-700">
                     <div v-if="currentView === 'edit'">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="flex text-sm font-semibold text-[#0f0f0f] dark:text-[#f6f6f6]">
+                            <span class="flex text-sm font-semibold text-gray-700 dark:text-[#f6f6f6]">
                                 <img v-if="selectedLanguage" :src="flagMap[selectedLanguage?.flagCode]"
                                     class="h-5 w-5 mr-2" alt="Flag" />
                                 {{ selectedLanguage ? selectedLanguage.language :
                                     'Select a language' }}
                             </span>
-                            <div class="relative">
-                                <div
-                                    class="relative w-full pl-3 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-[#0f0f0f] text-gray-300 placeholder-gray-400">
-                                    <input type="text" placeholder="Search translation" v-model="searchQuery"
-                                        class="w-full pl-10 pr-4 py-2 bg-transparent border-none focus:outline-none" />
-                                    <div class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">
-                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
+                            <SearchInput variant="md" v-model="searchQuery" placeholder="Search translation"/>
                         </div>
 
                         <div class="border rounded-lg border-gray-200 dark:border-gray-700 overflow-hidden">
                             <div
-                                class="grid grid-cols-12 bg-gray-50 dark:bg-[#0f0f0f69] p-2 text-sm font-medium border-b border-gray-200 dark:border-gray-700">
+                                class="grid grid-cols-12 bg-gray-50 text-gray-600 dark:text-gray-300 dark:bg-[#0f0f0f69] p-2 text-sm font-medium border-b border-gray-200 dark:border-gray-700">
                                 <div class="col-span-4">Translation Key</div>
                                 <div class="col-span-8">Translation Value</div>
                             </div>
@@ -702,17 +679,7 @@ async function handleDownload() {
 
                 <!-- Search Bar -->
                 <div class="grid grid-cols-3 w-full p-1">
-                    <div
-                        class="relative pl-3 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-[#0f0f0f] text-gray-300 placeholder-gray-400">
-                        <input type="text" placeholder="Search language" v-model="searchQuery" :disabled="isDownloading"
-                            class="w-full pl-10 pr-4 bg-transparent border-none focus:outline-none h-6" />
-                        <div class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">
-                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
-                    </div>
+                    <SearchInput variant="sm" v-model="searchQuery" placeholder="Search language"/>
                     <div @click="!isDownloading && toggleSelectAll()" :class="[
                         'select-none relative ml-2 pl-2 w-26 rounded-lg border',
                         'border-gray-200 dark:border-gray-800 hover:border-[#396bd88a]',
@@ -736,7 +703,7 @@ async function handleDownload() {
                     <div class="select-none flex items-center space-x-2">
                         <input type="checkbox" v-model="loadAfterDownload" id="openAfterExport"
                             :disabled="isDownloading"
-                            class="h-4 w-4 text-[#ffbd2e] border-gray-300 rounded focus:ring-[#ffbd2e] dark:border-[#0f0f0f98] dark:bg-[#0f0f0f98]">
+                            class="s-input h-4 w-4 text-[#ffbd2e] border-gray-300 rounded focus:ring-[#ffbd2e] dark:border-[#0f0f0f98] dark:bg-[#0f0f0f98]">
                         <label for="openAfterExport" class="text-sm text-[#0f0f0f98] dark:text-gray-300">
                             Load after download
                         </label>
@@ -846,7 +813,7 @@ async function handleDownload() {
                         <div class="flex-1 relative">
                             <input :value="exportPath ? truncatePath(exportPath) : 'Select export directory...'"
                                 type="text" readonly :disabled="true" style="font-size: 0.875rem;"
-                                class="select-none w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#0f0f0f69] dark:text-gray-500 truncate placeholder-gray-400"
+                                class="s-input select-none w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#0f0f0f69] dark:text-gray-500 truncate placeholder-gray-400"
                                 :class="{ 'text-gray-600 dark:text-gray-500': exportPath, 'text-gray-400': !exportPath }" />
                         </div>
                         <BaseButton variant="secondary" class="!px-3 !py-2 h-10" @click="handleSelectExportPath">
@@ -864,7 +831,7 @@ async function handleDownload() {
                                 class="select-none flex items-start space-x-3 p-3 bg-[#0f0f0f98] rounded-lg cursor-pointer transition-colors"
                                 :class="{
                                     'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800': exportFormat === format.value,
-                                    'hover:bg-gray-100/50 border border-transparent dark:hover:bg-gray-800': exportFormat !== format.value
+                                    'bg-gray-50 hover:bg-gray-100/50 border border-transparent dark:hover:bg-gray-800': exportFormat !== format.value
                                 }">
                                 <div class="flex-1">
                                     <div class="flex items-center gap-2">
@@ -883,7 +850,7 @@ async function handleDownload() {
                 <!-- Open After Export -->
                 <div class="select-none flex items-center space-x-2">
                     <input type="checkbox" v-model="openAfterExport" id="openAfterExport"
-                        class="h-4 w-4 text-[#ffbd2e] border-gray-300 rounded focus:ring-[#ffbd2e] dark:border-[#0f0f0f98] dark:bg-[#0f0f0f98]">
+                        class="s-input h-4 w-4 text-[#ffbd2e] border-gray-300 rounded focus:ring-[#ffbd2e] dark:border-[#0f0f0f98] dark:bg-[#0f0f0f98]">
                     <label for="openAfterExport" class="text-sm text-[#0f0f0f98] dark:text-gray-300">
                         Open folder after export
                     </label>

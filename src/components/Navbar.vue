@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar">
+    <nav class="navbar dark:bg-[#2f2f2f] border-b border-gray-300 dark:border-white/10">
         <ul class="nav-links">
             <li>
-                <router-link to="/" class="select-none logo-link">
+                <router-link to="/" class="select-none logo-link bg-white dark:bg-[#0f0f0f98] text-gray-700 dark:text-white">
                     <span class="flex items-center gap-2">
                         <img :src="HomeLogo" class="logo-img" />
                         <span class="logo-text">Home</span>
@@ -10,7 +10,7 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="/Languages" class="select-none logo-link">
+                <router-link to="/Languages" class="select-none logo-link bg-white dark:bg-[#0f0f0f98] text-gray-700 dark:text-white">
                     <span class="flex items-center gap-2">
                         <img :src="LanguesLogo" class="logo-img" />
                         <span class="logo-text">Langues</span>
@@ -31,13 +31,10 @@ import LanguesLogo from '../assets/langues.png';
     display: flex;
     justify-content: center;
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #2f2f2f;
     height: 3.5rem;
-    /* Increased height for logo */
 }
 
 .nav-links {
@@ -51,8 +48,6 @@ import LanguesLogo from '../assets/langues.png';
 
 .nav-links a {
     font-weight: 500;
-    background-color: #0f0f0f98;
-    color: white;
     text-decoration: none;
     padding: 0.5rem 1.25rem;
     border-radius: 8px;
@@ -90,7 +85,6 @@ import LanguesLogo from '../assets/langues.png';
 }
 
 .nav-links a.router-link-exact-active {
-    background-color: #0f0f0f69;
     color: #ffbd2e;
     border-color: #ffbd2e;
 }
