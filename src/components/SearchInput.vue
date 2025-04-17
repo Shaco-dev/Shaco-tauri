@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineEmits, withDefaults, defineProps } from 'vue'
 
 const props = withDefaults(defineProps<{
     placeholder?: string
@@ -40,11 +39,13 @@ const updateValue = (e: Event) => {
             </svg>
 
             <input type="text" :placeholder="props.placeholder" :value="props.modelValue" @input="updateValue" :class="[
-                'w-full bg-transparent border-none text-gray-600 dark:text-gray-400 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none h-full',
+                'w-full bg-transparent border-none focus:outline-none h-full',
+                'text-gray-700 dark:text-gray-200',
+                'placeholder-gray-500 dark:placeholder-gray-400',
                 props.inputClass,
-            props.variant === 'sm' ? 'h-6 text-sm' :
-                props.variant === 'lg' ? 'h-12 text-lg' :
-                    'h-10 text-base'
+                props.variant === 'sm' ? 'h-6 text-sm' :
+                    props.variant === 'lg' ? 'h-12 text-lg' :
+                        'h-10 text-base'
             ]" />
         </div>
     </div>

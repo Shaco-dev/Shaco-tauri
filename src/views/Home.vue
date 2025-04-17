@@ -2,19 +2,18 @@
 import Logo from '../assets/logo.png'
 import DiscordLogo from '../assets/discord.png'
 
+const currentVersion = '0.3.0'
+
 const versionFeatures = [
   {
-    description: 'Added feature to download languages with a beautiful and simple interface.'
+    description: 'Fix light/dark mode UI issues.'
   },
   {
-    description: 'Introduced a live language editor for easy translation management.'
+    description: 'Imporve code quality and performance.'
   },
   {
-    description: 'Implemented an auto-update feature to keep the app up-to-date.'
-  },
-  {
-    description: 'Fixed an issue where languages did not load correctly after download.'
-  },
+    description: 'Add a new feature to add new translation to specific language.'
+  }
 ]
 </script>
 
@@ -42,7 +41,7 @@ const versionFeatures = [
           <h2 class="text-2xl font-semibold mb-6 text-[#1f1f1f] dark:text-[#f6f6f6]">
             <span class="text-[#b54925]">Release Notes</span>
             <span class="text-[#e48a1f]"> & Features</span>
-            <span class="text-[#1f1f1f] dark:text-[#f6f6f6]"> (v0.2.1)</span>
+            <span class="text-[#1f1f1f] dark:text-[#f6f6f6]"> (v{{ currentVersion }})</span>
           </h2>
           <ul class="list-disc pl-5 text-[15px] text-[#333] dark:text-[#dcdcdc] leading-relaxed space-y-2">
             <li v-for="feature in versionFeatures" :key="feature.description">
