@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import Modal from '@/components/Modal.vue'
 import LoadedLanguagesList from '@/views/languages/components/LoadedLanguagesList.vue'
 import TranslationEditor from '@/views/languages/components/TranslationEditor.vue'
