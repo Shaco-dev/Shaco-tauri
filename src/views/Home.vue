@@ -3,9 +3,15 @@ import Logo from '../assets/logo.png'
 import DiscordLogo from '../assets/discord.png'
 
 
-const currentVersion = '0.4.0'
+const currentVersion = '0.4.1'
 
 const versionsHistory = {
+  '0.4.1': {
+    date: '2025-04-20',
+    features: [
+      'fix window layout & disable maximization',
+    ]
+  },
   '0.4.0': {
     date: '2025-04-20',
     features: [

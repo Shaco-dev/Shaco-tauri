@@ -1,6 +1,6 @@
 [package]
 name = "shaco-tool"
-version = "0.4.0"
+version = "0.4.1"
 description = "Shaco Tool"
 authors = ["Shaco-dev"]
 edition = "2021"

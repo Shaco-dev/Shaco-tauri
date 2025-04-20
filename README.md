@@ -1,4 +1,4 @@
-# 🧩 Shaco Tool - All-in-One Tool - Version 0.4.0
+# 🧩 Shaco Tool - All-in-One Tool - Version 0.4.1
 
 Shaco Tool is a desktop utility designed for the Transformice game community.  
 Right now, it's in active development and mainly handles downloading assets and modifying language files - a handy feature for managing transformice resources.
