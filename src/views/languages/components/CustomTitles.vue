@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import SearchInput from '../../../components/SearchInput.vue';
+import ShacoInput from '../../../components/ShacoInput.vue';
 
 const props = defineProps<{
   selectedLanguage: any | null;
@@ -119,7 +119,7 @@ const handleInput = (e: Event, key: string) => {
         {{ selectedLanguage ? `${selectedLanguage.language} Titles` : 'Select a language' }}
       </span>
       
-      <SearchInput 
+      <ShacoInput 
         variant="md" 
         v-model="searchQuery" 
         placeholder="Search titles"

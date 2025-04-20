@@ -27,3 +27,4 @@ src-tauri/target/release/bundle
 ~
 
 feature.md
+tool.py
