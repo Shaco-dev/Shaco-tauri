@@ -9,10 +9,10 @@ const versionsHistory = {
   '0.4.0': {
     date: '2025-04-20',
     features: [
-    'New feature to download known swf libraries (.swf)',
-    'New feature to download known music and sound (.mp3)',
-    'New feature to download images from selected database(.png/.jpg)',
-      'New popup for accepting / refusing auto-updates',
+      'New feature to download known swf libraries (.swf)',
+      'New feature to download known music and sound (.mp3)',
+      'New feature to download images from selected database(.png/.jpg)',
+      // 'New popup for accepting / refusing auto-updates',
       'Dark mode is now enforced due to issues with light mode',
       'UI improvements'
     ]
@@ -69,8 +69,7 @@ const versionsHistory = {
             <span class="text-[#b54925]">Release History</span>
             <span class="text-[#e48a1f]"> & Changelog</span>
           </h2>
-          <div
-            class="px-6">
+          <div class="px-6">
             <div class="overflow-y-auto h-58 pr-4 scrollbar">
               <div v-for="[version, details] in Object.entries(versionsHistory)" :key="version"
                 class="mb-4 pb-6 border-b border-gray-200 dark:border-gray-700 last:border-0 last:pb-0">
