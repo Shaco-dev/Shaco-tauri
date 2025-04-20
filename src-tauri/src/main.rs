@@ -1,9 +1,11 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use flate2::read::ZlibDecoder;
-use std::fs::File;
 use std::io::Read;
 use std::str;
+use std::io::Write;
+use std::path::Path;
+use std::fs::{self, File};
 
 #[tauri::command]
 fn decompress_gz(path: String) -> Result<String, String> {
@@ -50,6 +52,34 @@ async fn fetch_url(url: String) -> Result<Vec<u8>, String> {
     }
 }
 
+#[tauri::command]
+async fn fetch_url_string(url: String) -> Result<String, String> {
+    match reqwest::get(&url).await {
+        Ok(resp) => match resp.text().await {
+            Ok(text) => Ok(text),
+            Err(e) => Err(format!("Failed to read bytes: {}", e)),
+        },
+        Err(e) => Err(format!("Request failed: {}", e)),
+    }
+}
+
+
+
+#[tauri::command]
+async fn download_file(url: String, path: String) -> Result<String, String> {
+    let response = reqwest::get(&url).await.map_err(|e| e.to_string())?;
+    let content = response.bytes().await.map_err(|e| e.to_string())?;
+
+    if let Some(parent) = Path::new(&path).parent() {
+        fs::create_dir_all(parent).map_err(|e| e.to_string())?;
+    }
+
+    let mut file = File::create(&path).map_err(|e| e.to_string())?;
+    file.write_all(&content).map_err(|e| e.to_string())?;
+
+    Ok(path)
+}
+
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
@@ -60,7 +90,9 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             decompress_gz,
             compress_gz,
-            fetch_url
+            fetch_url,
+            fetch_url_string,
+            download_file
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import SearchInput from '../components/SearchInput.vue'
+import ShacoInput from '../components/ShacoInput.vue'
 import { ref } from 'vue'
 
 const searchText = ref<string>('');
 </script>
 
 <template>
-<SearchInput v-model="searchText" variant="sm" />
-<SearchInput v-model="searchText" variant="md" />
-<SearchInput v-model="searchText" variant="lg" />
+<ShacoInput v-model="searchText" variant="sm" />
+<ShacoInput v-model="searchText" variant="md" />
+<ShacoInput v-model="searchText" variant="lg" />
 </template>
 
 

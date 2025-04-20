@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import SearchInput from '../../../components/SearchInput.vue';
+import ShacoInput from '../../../components/ShacoInput.vue';
 
 interface Language {
   code: string;
@@ -36,7 +36,7 @@ const filteredLanguages = computed(() => {
   <div class="p-3 bg-white dark:bg-[#0f0f0f98] rounded-lg border border-gray-200 dark:border-gray-700">
     <h3 class="text-sm font-medium mb-2">Loaded Languages ({{ filteredLanguages.length }})</h3>
     
-    <SearchInput 
+    <ShacoInput 
       variant="sm" 
       v-model="searchQuery" 
       placeholder="Search language"

@@ -1,14 +1,17 @@
-# 🧩 Shaco Tool (soon: All-in-One Tool)
+# 🧩 Shaco Tool - All-in-One Tool - Version 0.4.0
 
 Shaco Tool is a desktop utility designed for the Transformice game community.  
-Right now, it's in active development and mainly handles downloading and modifying language files — a handy feature for managing translations and customizing in-game text.
+Right now, it's in active development and mainly handles downloading assets and modifying language files - a handy feature for managing transformice resources.
 
 ## 🚀 Future Plans
 
 This is just the beginning! The goal is to turn Shaco Tool into a true all-in-one toolkit for Transformice. Planned features include:
 
-- Editing and managing image assets
 - Working with SWF files
+- Working with JSON files
+- Extracting assets from the transformice.swf (For updated assets)
+- Extracting client keys
+- Extracting Shop codes
 
 ## 🛠️ Download
 

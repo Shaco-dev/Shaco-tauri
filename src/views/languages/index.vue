@@ -317,7 +317,7 @@ async function handleDownload() {
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between text-sm">
 
-                    <span class="flex items-center bg-white dark:bg-[#2f2f2f]/80 shadow-md rounded-xl px-3 py-1 transition-colors duration-200 border-b border-white/10 hover:bg-[#f9f9f9] dark:hover:bg-[#2f2f2f]/80">
+                    <span class="flex items-center bg-white shadow-md w-36 rounded-xl px-3 py-1 transition-colors duration-200 border-b border-[#ffbd2e] hover:bg-[#f9f9f9] dark:hover:bg-[#0f0f0f98] dark:bg-[#0f0f0f98]">
                         <img :src="LanguesLogo" alt="Logo" class="mr-2" />
                         <span class="text-md font-bold text-[#ffbd2e]">Langues</span>
                         </span>

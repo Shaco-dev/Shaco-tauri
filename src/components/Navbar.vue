@@ -17,6 +17,14 @@
                     </span>
                 </router-link>
             </li>
+            <li>
+                <router-link to="/Assets" class="select-none logo-link bg-white dark:bg-[#0f0f0f98] text-gray-700 dark:text-white">
+                    <span class="flex items-center gap-2">
+                        <img :src="AssetsLogo" class="logo-img" />
+                        <span class="logo-text">Assets</span>
+                    </span>
+                </router-link>
+            </li>
         </ul>
     </nav>
 </template>
@@ -24,6 +32,7 @@
 <script setup lang="ts">
 import HomeLogo from '../assets/home.png';
 import LanguesLogo from '../assets/langues.png';
+import AssetsLogo from '../assets/assets.png';
 </script>
 
 <style scoped>

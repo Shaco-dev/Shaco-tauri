@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import SearchInput from '../../../components/SearchInput.vue';
+import ShacoInput from '../../../components/ShacoInput.vue';
 import BaseButton from '../../../components/BaseButton.vue';
 import ProgressBar from '../../../components/ProgressBar.vue';
 import { ArrowDownTrayIcon, CheckIcon, DocumentMagnifyingGlassIcon } from '@heroicons/vue/24/outline';
@@ -51,7 +51,7 @@ const loadAfterDownload = ref(true);
     </div>
 
     <div class="grid grid-cols-3 w-full p-1">
-      <SearchInput 
+      <ShacoInput 
         variant="sm" 
         :modelValue="searchQuery" 
         @update:modelValue="updateSearch" 

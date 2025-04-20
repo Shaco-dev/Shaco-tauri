@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, watch, ref } from 'vue';
-import SearchInput from '../../../components/SearchInput.vue';
+import ShacoInput from '../../../components/ShacoInput.vue';
+import { PlusIcon, TrashIcon } from '@heroicons/vue/24/outline';
 
 const props = defineProps<{
   selectedLanguage: any | null;
@@ -20,6 +21,7 @@ const newTranslationKey = ref('');
 const newTranslationValue = ref('');
 const showAddForm = ref(false);
 const editingKey = ref<{originalKey: string, newKey: string} | null>(null);
+
 
 const translationEntries = computed(() => {
   if (!props.selectedCode) return [];
@@ -129,6 +131,15 @@ const saveKeyEdit = () => {
 const cancelKeyEdit = () => {
   editingKey.value = null;
 };
+
+const deleteTranslation = (key: string) => {
+  if (!props.selectedCode) return;
+
+  const updatedTranslations = { ...props.translations[props.selectedCode] };
+  delete updatedTranslations[key];
+
+  emit('update:translations', props.selectedCode, updatedTranslations);
+};
 </script>
 
 <template>
@@ -148,15 +159,13 @@ const cancelKeyEdit = () => {
         <button 
           v-if="selectedCode && !showAddForm" 
           @click="showAddForm = true"
-          class="px-3 h-6 text-sm bg-[#396cd8] hover:bg-[#2d5ab8] text-white rounded-md flex items-center"
+          class="px-2 h-6 text-sm bg-[#396cd8] hover:bg-[#2d5ab8] text-white rounded-md flex items-center"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-          </svg>
-          Add
+          <PlusIcon class="h-4 w-4 mr-1" />
+          New
         </button>
         
-        <SearchInput 
+        <ShacoInput 
           variant="sm" 
           v-model="searchQuery" 
           placeholder="Search translation"
@@ -212,37 +221,42 @@ const cancelKeyEdit = () => {
         <div 
           v-for="[key, value] in visibleEntries" 
           :key="key"
-          class="grid grid-cols-12 p-1 hover:bg-gray-50 dark:hover:bg-[#0f0f0f69] transition-all"
+          class="grid grid-cols-12 pl-2 hover:bg-gray-50 dark:hover:bg-[#0f0f0f69] transition-all key-container"
         >
-          <div class="col-span-4 font-mono text-sm pr-4 truncate flex items-center">
+          <div 
+            class="col-span-4 font-mono text-sm pr-4 truncate flex items-center"
+          >
             <!-- Editing key mode -->
             <div v-if="editingKey && editingKey.originalKey === key" class="flex w-full space-x-1">
               <input 
                 v-model="editingKey.newKey" 
-                class="flex-1 px-1 py-0.5 text-xs border border-blue-300 dark:border-blue-700 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-[#1f1f1f]"
+                class="flex-1 px-1 w-[100px] py-0.5 text-sm border border-blue-300 dark:border-blue-700 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-[#1f1f1f]"
               />
-              <button @click="saveKeyEdit" class="text-green-600 hover:text-green-700">
+              <button @click="saveKeyEdit" class="p-1 text-green-600 hover:text-green-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
               </button>
-              <button @click="cancelKeyEdit" class="text-red-600 hover:text-red-700">
+              <button @click="cancelKeyEdit" class="p-1 text-red-600 hover:text-red-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
               </button>
             </div>
             
-            <!-- Display key with edit button -->
-            <div v-else class="flex w-full items-center">
-              <span class="flex-1 truncate">{{ key }}</span>
+            <!-- Display key with edit button, now using CSS for visibility -->
+            <div v-else class="flex w-full items-center key-display">
+              <span class="flex-1 truncate" :title="key">{{ key }}</span>
               <button 
                 @click="startEditKey(key)" 
-                class="ml-1 text-gray-400 hover:text-blue-500  opacity-0 group-hover:opacity-100 hover:opacity-100"
+                class="ml-1 p-1 text-gray-400 hover:text-blue-500"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                 </svg>
+              </button>
+              <button @click="deleteTranslation(key)" class="ml-1 p-1 text-gray-400 hover:text-red-500">
+                <TrashIcon class="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
@@ -251,7 +265,7 @@ const cancelKeyEdit = () => {
             <textarea 
               :value="String(value)"
               @input="(e) => handleInput(e, key)"
-              class="w-full bg-transparent dark:bg-[#0f0f0f98] rounded-sm px-2 py-1 text-sm border-b border-gray-200 dark:border-gray-700 hover:border-gray-300 focus:border-[#396cd8] focus:outline-none resize-y min-h-[30px] overflow-y-auto text-gray-700 dark:text-gray-200"
+              class="w-full mt-1 mb-0 bg-transparent dark:bg-[#0f0f0f98] rounded-sm px-2 py-1 text-sm border-b border-gray-200 dark:border-gray-700 hover:border-gray-300 focus:border-[#396cd8] focus:outline-none resize-y min-h-[30px] overflow-y-auto text-gray-700 dark:text-gray-200"
               rows="1"
             ></textarea>
           </div>
@@ -267,4 +281,19 @@ const cancelKeyEdit = () => {
       </div>
     </div>
   </div>
-</template> 
+</template>
+
+<style scoped>
+/* Hide edit button by default */
+.edit-button {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+/* Show edit button on hover */
+.key-display:hover .edit-button {
+  opacity: 1;
+  visibility: visible;
+}
+</style> 

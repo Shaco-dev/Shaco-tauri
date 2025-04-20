@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import LanguageCard from './LanguageCard.vue';
-import SearchInput from '../../../../components/SearchInput.vue';
+import ShacoInput from '../../../../components/ShacoInput.vue';
 import { CheckIcon, DocumentMagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 
 interface Language {
@@ -47,7 +47,7 @@ const isAllSelected = computed(() => {
 <template>
   <div class="space-y-3">
     <div class="flex items-center gap-2">
-      <SearchInput 
+      <ShacoInput 
         variant="sm" 
         v-model="searchQuery" 
         placeholder="Search language" 

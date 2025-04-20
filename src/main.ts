@@ -1,5 +1,3 @@
-
-
 import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -11,7 +9,7 @@ import "./main.css";
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import { checkForUpdates } from "./updater";
 import Test from "./views/Test.vue";
-
+import Assets from "./views/Assets.vue";
 
 checkForUpdates();
 
@@ -20,7 +18,8 @@ const router = createRouter({
   routes: [
     { path: "/", name: "Home", component: Home },
     { path: "/languages", name: "Languages", component: Languages },
-    { path: "/test", name: "test", component: Test }
+    { path: "/test", name: "test", component: Test },
+    { path: "/assets", name: "Assets", component: Assets }
   ],
 });
 
