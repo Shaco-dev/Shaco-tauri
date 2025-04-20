@@ -3770,7 +3770,7 @@ dependencies = [
 
 [[package]]
 name = "shaco-tool"
-version = "0.3.0"
+version = "0.4.1"
 dependencies = [
  "base64 0.21.7",
  "flate2",
